@@ -3,7 +3,7 @@
 
 // Defines a Kubernetes pod template that can be used to create nodes.
 
-podTemplate(containers: [
+podTemplate(podRetention: onFailure(), containers: [
     containerTemplate(
         name: 'gradle', image: 'gradle:6.3-jdk14', command: 'sleep', args: '30d'
         ),
@@ -43,6 +43,25 @@ podTemplate(containers: [
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])                       
+                }
+
+                stage("jacoco checkstyle") {
+                    try {
+                        sh '''
+                        pwd
+               		    cd Chapter08/sample1
+                        ./gradlew checkstyleMain
+                        '''
+                    } catch (Exception E) {
+                        echo "Failure detected"
+                    }
+
+                    publishHTML (target: [
+                        reportDir: 'Chapter08/sample1/build/reports/checkstyle/',
+                        reportFiles: 'main.html',
+                        reportName: 'jacoco checkstyle Report'
+                    ])
+                
                 }
            }
         }
