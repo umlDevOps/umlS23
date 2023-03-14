@@ -89,9 +89,9 @@ podTemplate(yaml: '''
                         reportName: 'jacoco checkstyle Report'
                     ])
                 
-                }
+                }*/
            }
-           */
+           
            stage('Build Java Image') {
             container('kaniko') {
                 stage('Build a gradle project') {
