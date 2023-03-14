@@ -73,7 +73,7 @@ podTemplate(yaml: '''
                         reportName: "JaCoCo Report"
                     ])                       
                 }
- /*
+ 
                 stage("jacoco checkstyle") {
                     try {
                         sh '''
@@ -91,7 +91,7 @@ podTemplate(yaml: '''
                         reportName: 'jacoco checkstyle Report'
                     ])
                 
-                }*/
+                }
            }
            
            stage('Build Java Image') {
