@@ -42,7 +42,7 @@ podTemplate(yaml: '''
                 stage('Build a gradle project') {
                     // from the git plugin
                     // https://www.jenkins.io/doc/pipeline/steps/git/
-                   git branch: 'main', 'https://github.com/umlDevOps/week7.git'
+                   git branch: 'main', url:'https://github.com/umlDevOps/week7.git'
       container('gradle') {
         stage('Build a gradle project') {
           sh '''
